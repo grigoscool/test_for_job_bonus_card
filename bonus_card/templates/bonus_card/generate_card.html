@@ -4,11 +4,19 @@
 {% block content %}
 <form action="{% url 'bonus_card:generate' %}" method="get">
   <label for="1">entry count of cards:</label>
-  <input id="1" type="text" name="count_cards">
+    <input id="1" type="text" name="count_cards">
+  <br>
   <lable for="2">entry serial number:</lable>
-  <input id="2" name="serial" type="text">
-  <lable for="3">entry duration in month:</lable>
-  <input id="3" name="duration" type="text">
+    <input id="2" name="serial" type="text">
+  <br>
+  <p>select duration:</p>
+    <label for="3">1 year</label>
+      <input id="3" name="duration" value="12" type="radio">
+    <label for="4">6 months</label>
+      <input id="4" name="duration" value="6" type="radio">
+    <label for="5">1 month</label>
+      <input id="5" name="duration" value="1" type="radio">
+  <br>
   <button type="submit">generate</button>
 </form>
 {% endblock content %}
