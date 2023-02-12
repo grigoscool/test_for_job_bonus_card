@@ -7,7 +7,7 @@ class BonusCard(models.Model):
     date_creation = models.DateTimeField(auto_now_add=True)
     date_end = models.DateTimeField()
     date_use = models.DateTimeField(blank=True, null=True)
-    balance = models.IntegerField()
+    balance = models.IntegerField(default=0)
     activate = models.BooleanField(default=False)
 
     def __str__(self):

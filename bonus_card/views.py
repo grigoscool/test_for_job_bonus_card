@@ -1,3 +1,6 @@
+import random
+import datetime
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 
@@ -17,6 +20,7 @@ def detail(request, pk):
     """ Show detail info about card """
     card = get_object_or_404(BonusCard, pk=pk)
     buys = Buy.objects.filter(bonus_card_id=pk)
+    print(card.date_end)
     context = {
         'card': card,
         'buys': buys,
@@ -53,4 +57,13 @@ def deactivate(request, pk):
 def delete(request, pk):
     delete_card = get_object_or_404(BonusCard, pk=pk)
     delete_card.delete()
+    return redirect('bonus_card:home')
+
+
+def generate(request):
+    my_list = [i for i in range(1_111, 10_000)]
+    new_card = BonusCard.objects.create(
+        serial_num=(random.sample(my_list, k=1))[0], card_num=random.randrange(10_000),
+        date_creation=datetime.datetime.now(), date_end='2023-12-27 08:29:07+00:00',
+    )
     return redirect('bonus_card:home')

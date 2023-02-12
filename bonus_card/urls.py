@@ -12,5 +12,6 @@ urlpatterns = [
     path('activate/<int:pk>/', views.activate, name='activate'),
     path('deactivate/<int:pk>/', views.deactivate, name='deactivate'),
     path('delete/<int:pk>/', views.delete, name='delete'),
+    path('generate/', views.generate, name='generate'),
 
 ]
