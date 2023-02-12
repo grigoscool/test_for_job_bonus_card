@@ -60,10 +60,15 @@ def delete(request, pk):
     return redirect('bonus_card:home')
 
 
+def generate_card(request):
+    return render(request, 'bonus_card/generate_card.html')
+
+
 def generate(request):
     my_list = [i for i in range(1_111, 10_000)]
-    new_card = BonusCard.objects.create(
-        serial_num=(random.sample(my_list, k=1))[0], card_num=random.randrange(10_000),
-        date_creation=datetime.datetime.now(), date_end='2023-12-27 08:29:07+00:00',
-    )
+    for _ in range(int(request.GET.get('count_cards'))):
+        new_card = BonusCard.objects.create(
+            serial_num=int(request.GET.get('serial')), card_num=random.sample(my_list, k=1)[0],
+            date_creation=datetime.datetime.now(), date_end='2023-12-27 08:29:07+00:00',
+        )
     return redirect('bonus_card:home')

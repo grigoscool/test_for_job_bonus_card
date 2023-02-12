@@ -1,0 +1,12 @@
+{% extends 'bonus_card/base.html' %}
+{% load static %}
+
+{% block content %}
+<form action="{% url 'bonus_card:generate' %}" method="get">
+  <label for="1">entry count of cards:</label>
+  <input id="1" type="text" name="count_cards">
+  <lable for="2">entry serial number:</lable>
+  <input id="2" name="serial" type="text">
+  <button type="submit">generate</button>
+</form>
+{% endblock content %}
