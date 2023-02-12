@@ -8,4 +8,5 @@ app_name = 'bonus_card'
 urlpatterns = [
     path('', views.home, name='home'),
     path('card-detail/<int:pk>/', views.detail, name='detail'),
+    path('search', views.search, name='search'),
 ]
