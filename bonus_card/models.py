@@ -9,6 +9,7 @@ class BonusCard(models.Model):
     date_use = models.DateTimeField(blank=True, null=True)
     balance = models.IntegerField(default=0)
     activate = models.BooleanField(default=False)
+    overdue = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Card № {self.card_num}'

@@ -1,8 +1,8 @@
 import random
-import datetime
-
+from datetime import timedelta
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
+from django.utils import timezone
 
 from .models import BonusCard, Buy
 
@@ -20,7 +20,8 @@ def detail(request, pk):
     """ Show detail info about card """
     card = get_object_or_404(BonusCard, pk=pk)
     buys = Buy.objects.filter(bonus_card_id=pk)
-    print(card.date_end)
+    if card.date_end <= timezone.now():
+        card.overdue = True
     context = {
         'card': card,
         'buys': buys,
@@ -33,7 +34,8 @@ def search(request):
     search_item = request.GET.get('search')
     card = BonusCard.objects.filter(
         Q(card_num__icontains=search_item) | Q(serial_num__icontains=search_item) |
-        Q(date_creation__icontains=search_item) | Q(date_end__icontains=search_item))
+        Q(date_creation__icontains=search_item) | Q(date_end__icontains=search_item)
+    )
     context = {
         'card': card,
     }
@@ -65,10 +67,12 @@ def generate_card(request):
 
 
 def generate(request):
+    print(int(request.GET.get('duration')))
     my_list = [i for i in range(1_111, 10_000)]
     for _ in range(int(request.GET.get('count_cards'))):
         new_card = BonusCard.objects.create(
             serial_num=int(request.GET.get('serial')), card_num=random.sample(my_list, k=1)[0],
-            date_creation=datetime.datetime.now(), date_end='2023-12-27 08:29:07+00:00',
+            date_creation=timezone.now(),
+            date_end=(timezone.now()+timedelta(days=int((request.GET.get('duration')))*30)),
         )
     return redirect('bonus_card:home')

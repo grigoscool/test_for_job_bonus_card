@@ -9,6 +9,7 @@
 			    <p class="card-text">create: {{ card.date_creation }}</p>
 			    <p class="card-text">end: {{ card.date_end }}</p>
 			    <p class="card-text">activate: {{ card.activate }}</p>
+			    <p class="card-text">overdue: {{ card.overdue }}</p>
 				  {% if card.activate %}
 			      <a href="{% url 'bonus_card:deactivate' pk=card.pk %}" class="card-link">deactivate</a>
 				  {% else %}
