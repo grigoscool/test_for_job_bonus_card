@@ -17,7 +17,9 @@ class BonusCard(models.Model):
 
 class Buy(models.Model):
     name = models.TextField()
-    bonus_card = models.ForeignKey(BonusCard, on_delete=models.SET_NULL, null=True)
+    bonus_card = models.ForeignKey(
+        BonusCard, on_delete=models.SET_NULL, null=True
+    )
 
     def __str__(self):
         return self.name
