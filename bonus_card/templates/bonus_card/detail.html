@@ -9,7 +9,18 @@
 			    <p class="card-text">create: {{ card.date_creation }}</p>
 			    <p class="card-text">end: {{ card.date_end }}</p>
 			    <p class="card-text">activate: {{ card.activate }}</p>
-			    <a href="#" class="card-link">Another link</a>
+				  {% if card.activate %}
+			      <a href="{% url 'bonus_card:deactivate' pk=card.pk %}" class="card-link">deactivate</a>
+				  {% else %}
+				    <a href="{% url 'bonus_card:activate' pk=card.pk %}" class="card-link">activate</a>
+				  {% endif %}
+				  <a href="{% url 'bonus_card:delete' pk=card.pk %}" class="card-link">delete</a>
 			  </div>
 			</div>
+			<ul>
+				<t3>Shopping list</t3>
+				{% for buy in buys %}
+					<li>{{ buy }}</li>
+				{% endfor %}
+			</ul>
 {% endblock content %}

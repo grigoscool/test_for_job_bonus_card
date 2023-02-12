@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 
-from .models import BonusCard
+from .models import BonusCard, Buy
 
 
 def home(request):
@@ -16,8 +16,10 @@ def home(request):
 def detail(request, pk):
     """ Show detail info about card """
     card = get_object_or_404(BonusCard, pk=pk)
+    buys = Buy.objects.filter(bonus_card_id=pk)
     context = {
         'card': card,
+        'buys': buys,
     }
     return render(request, 'bonus_card/detail.html', context)
 
@@ -32,3 +34,23 @@ def search(request):
         'card': card,
     }
     return render(request, 'bonus_card/search.html', context)
+
+
+def activate(request, pk):
+    activate_card = get_object_or_404(BonusCard, pk=pk)
+    activate_card.activate = True
+    activate_card.save()
+    return redirect('bonus_card:detail', pk=pk)
+
+
+def deactivate(request, pk):
+    deactivate_card = get_object_or_404(BonusCard, pk=pk)
+    deactivate_card.activate = False
+    deactivate_card.save()
+    return redirect('bonus_card:detail', pk=pk)
+
+
+def delete(request, pk):
+    delete_card = get_object_or_404(BonusCard, pk=pk)
+    delete_card.delete()
+    return redirect('bonus_card:home')
