@@ -12,3 +12,11 @@ class BonusCard(models.Model):
 
     def __str__(self):
         return f'Card № {self.card_num}'
+
+
+class Buy(models.Model):
+    name = models.TextField()
+    bonus_card = models.ForeignKey(BonusCard, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name
