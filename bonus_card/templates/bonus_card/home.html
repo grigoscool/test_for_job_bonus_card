@@ -1,0 +1,18 @@
+{% extends 'bonus_card/base.html' %}
+{% load static %}
+
+{% block content %}
+		{% for card in cards %}
+	    <div class="card" style="width: 18rem;">
+			  <div class="card-body">
+			    <h5 class="card-title">num: {{ card.card_num }}</h5>
+			    <h6 class="card-subtitle mb-2 text-muted">serial: {{ card.serial_num }}</h6>
+			    <p class="card-text">create: {{ card.date_creation }}</p>
+			    <p class="card-text">end: {{ card.date_end }}</p>
+			    <p class="card-text">activate: {{ card.activate }}</p>
+			    <a href="{% url 'bonus_card:detail' pk=card.pk %}" class="card-link">Card link</a>
+			    <a href="#" class="card-link">Another link</a>
+			  </div>
+			</div>
+		{% endfor %}
+{% endblock content %}
