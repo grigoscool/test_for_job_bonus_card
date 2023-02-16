@@ -1,4 +1,18 @@
 from django.db import models
+from django.db.models import Q
+
+
+class BonusCardManager(models.Manager):
+    def search(self, query=None):
+        if query is None or query == '':
+            self.get_queriset().none()
+        lookups = (
+                Q(card_num__icontains=query) |
+                Q(serial_num__icontains=query) |
+                Q(date_creation__icontains=query) |
+                Q(date_end__icontains=query)
+        )
+        return self.get_queryset().filter(lookups)
 
 
 class BonusCard(models.Model):
@@ -10,6 +24,8 @@ class BonusCard(models.Model):
     balance = models.IntegerField(default=0)
     activate = models.BooleanField(default=False)
     overdue = models.BooleanField(default=False)
+
+    objects = BonusCardManager()
 
     def __str__(self):
         return f'Card № {self.card_num}'

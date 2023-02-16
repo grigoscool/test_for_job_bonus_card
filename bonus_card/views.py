@@ -1,7 +1,6 @@
 import random
 from datetime import timedelta
 
-from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
@@ -32,13 +31,8 @@ def detail(request, pk):
 
 def search(request):
     """ Show results of searching. """
-    search_item = request.GET.get('search')
-    card = BonusCard.objects.filter(
-        Q(card_num__icontains=search_item) |
-        Q(serial_num__icontains=search_item) |
-        Q(date_creation__icontains=search_item) |
-        Q(date_end__icontains=search_item)
-    )
+    query = request.GET.get('search')
+    card = BonusCard.objects.search(query)
     context = {
         'card': card,
     }
