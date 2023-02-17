@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models import Q
 from django.urls import reverse
 
+from .validators import validate_serial_num
+
 
 class BonusCardManager(models.Manager):
     def search(self, query=None):
@@ -17,7 +19,7 @@ class BonusCardManager(models.Manager):
 
 
 class BonusCard(models.Model):
-    serial_num = models.PositiveIntegerField()
+    serial_num = models.PositiveIntegerField(validators=[validate_serial_num])
     card_num = models.PositiveIntegerField()
     date_creation = models.DateTimeField(auto_now_add=True)
     date_end = models.DateTimeField()
