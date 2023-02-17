@@ -10,7 +10,7 @@
 			    <p class="card-text">create: {{ card.date_creation }}</p>
 			    <p class="card-text">end: {{ card.date_end }}</p>
 			    <p class="card-text">activate: {{ card.activate }}</p>
-			    <a href="{% url 'bonus_card:detail' pk=card.pk %}" class="card-link">Card link</a>
+			    <a href="{{ card.get_absolute_url }}" class="card-link">Card link</a>
 			    <a href="#" class="card-link">Another link</a>
 			  </div>
 			</div>

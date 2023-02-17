@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Q
+from django.urls import reverse
 
 
 class BonusCardManager(models.Manager):
@@ -29,6 +30,9 @@ class BonusCard(models.Model):
 
     def __str__(self):
         return f'Card № {self.card_num}'
+
+    def get_absolute_url(self):
+        return reverse('bonus_card:detail', kwargs={'pk': self.pk})
 
 
 class Buy(models.Model):
