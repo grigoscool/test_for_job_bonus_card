@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.utils import timezone
 
 from bonus_card.models import BonusCard, Buy
 
@@ -8,7 +9,7 @@ class BonusCardTestCase(TestCase):
     def setUpTestData(cls):
         cls.card_1 = BonusCard.objects.create(
             serial_num=1234, card_num=999,
-            date_end='2024-02-11 12:27:40'
+            date_end=timezone.now()
         )
 
     def setUp(self) -> None:
@@ -30,6 +31,13 @@ class BonusCardTestCase(TestCase):
     def test_get_absolute_url(self):
         expected_url = self.card_1.get_absolute_url()
         self.assertEqual('/card-detail/1/', str(expected_url))
+
+    def test_balance_default(self):
+        expected_balance = self.card_1.balance
+        self.assertEqual(0, expected_balance)
+
+    def test_activate_default(self):
+        self.assertFalse(self.card_1.activate)
 
 
 class BuyTestCase(TestCase):

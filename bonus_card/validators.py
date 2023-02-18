@@ -1,4 +1,5 @@
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 
 def validate_serial_num(value):
@@ -6,3 +7,15 @@ def validate_serial_num(value):
         return value
     else:
         raise ValidationError('серийник должен быть 4х значным')
+
+
+def validate_date_end_not_in_past(value):
+    if value < timezone.now():
+        raise ValidationError('end time must be in future')
+    return value
+
+
+def validate_date_end_not_gt_1year(value):
+    if value > timezone.now() + timezone.timedelta(days=365):
+        raise ValidationError('Not longer 1 year')
+    return value

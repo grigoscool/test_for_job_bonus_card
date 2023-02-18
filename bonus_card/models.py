@@ -2,7 +2,9 @@ from django.db import models
 from django.db.models import Q
 from django.urls import reverse
 
-from .validators import validate_serial_num
+from .validators import (validate_serial_num,
+                         validate_date_end_not_in_past,
+                         validate_date_end_not_gt_1year)
 
 
 class BonusCardManager(models.Manager):
@@ -23,7 +25,10 @@ class BonusCard(models.Model):
         validators=[validate_serial_num])
     card_num = models.PositiveIntegerField()
     date_creation = models.DateTimeField(auto_now_add=True)
-    date_end = models.DateTimeField(verbose_name='end time')
+    date_end = models.DateTimeField(
+        verbose_name='end time',
+        validators=[validate_date_end_not_in_past,
+                    validate_date_end_not_gt_1year])
     date_use = models.DateTimeField(blank=True, null=True)
     balance = models.IntegerField(default=0)
     activate = models.BooleanField(default=False)
