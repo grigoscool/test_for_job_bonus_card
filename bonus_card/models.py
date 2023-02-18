@@ -19,10 +19,11 @@ class BonusCardManager(models.Manager):
 
 
 class BonusCard(models.Model):
-    serial_num = models.PositiveIntegerField(validators=[validate_serial_num])
+    serial_num = models.PositiveIntegerField(
+        validators=[validate_serial_num])
     card_num = models.PositiveIntegerField()
     date_creation = models.DateTimeField(auto_now_add=True)
-    date_end = models.DateTimeField()
+    date_end = models.DateTimeField(verbose_name='end time')
     date_use = models.DateTimeField(blank=True, null=True)
     balance = models.IntegerField(default=0)
     activate = models.BooleanField(default=False)
@@ -38,7 +39,7 @@ class BonusCard(models.Model):
 
 
 class Buy(models.Model):
-    name = models.TextField()
+    name = models.CharField(max_length=100)
     bonus_card = models.ForeignKey(
         BonusCard, on_delete=models.SET_NULL, null=True
     )
