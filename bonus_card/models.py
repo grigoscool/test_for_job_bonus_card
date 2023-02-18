@@ -33,6 +33,7 @@ class BonusCard(models.Model):
     balance = models.IntegerField(default=0)
     activate = models.BooleanField(default=False)
     overdue = models.BooleanField(default=False)
+    slug = models.SlugField(blank=True, null=True)
 
     objects = BonusCardManager()
 
