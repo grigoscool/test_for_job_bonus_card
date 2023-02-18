@@ -15,5 +15,19 @@
 			  </div>
 			</div>
 		{% endfor %}
-
+<div class="paginator">
+	{% if cards.has_previous %}
+		<a class="pagin-link" href="?page={{ cards.previous_page_number }}">&laquo;</a>
+	{% endif %}
+	{% for page in cards.paginator.page_range %}
+		{% if cards.number == page %}
+			<a class="pagin-link-selected" href="?page={{ page }}">{{ page }}</a>
+		{% else %}
+			<a class="pagin-link" href="?page={{ page }}">{{ page }}</a>
+		{% endif %}
+	{% endfor %}
+	{% if cards.has_next %}
+		<a class="pagin-link" href="?page={{ cards.next_page_number }}">	&raquo;</a>
+	{% endif %}
+</div>
 {% endblock content %}

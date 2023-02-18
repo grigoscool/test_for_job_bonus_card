@@ -1,6 +1,7 @@
 import random
 from datetime import timedelta
 
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
@@ -9,7 +10,12 @@ from .models import BonusCard, Buy
 
 def home(request):
     """ Show list of all bonus cards. """
-    cards = BonusCard.objects.all()
+    bonus_card = BonusCard.objects.all()
+
+    paginator = Paginator(bonus_card, 3)
+    paginator_page = request.GET.get('page')
+    cards = paginator.get_page(paginator_page)
+
     context = {
         'cards': cards,
     }
