@@ -10,8 +10,8 @@ def validate_serial_num(value):
 
 
 def validate_date_end_not_in_past(value):
-    if value < timezone.now():
-        raise ValidationError('end time must be in future')
+    if value < timezone.now() + timezone.timedelta(days=30):
+        raise ValidationError('end time less per month')
     return value
 
 
