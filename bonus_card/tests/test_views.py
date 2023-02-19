@@ -8,6 +8,7 @@ from bonus_card.models import BonusCard
 
 class StaticUrlTest(TestCase):
     """Страница доступна по URL."""
+
     @classmethod
     def setUpTestData(cls):
         cls.card_1 = BonusCard.objects.create(
@@ -44,7 +45,6 @@ class StaticUrlTest(TestCase):
             response = self.client.get(path)
             self.assertRedirects(response, url)
 
-
     def test_dinamic_url(self):
         path_row: tuple = (
             f'/card-detail/{self.card_1.pk}/',
@@ -54,7 +54,6 @@ class StaticUrlTest(TestCase):
             error_name: str = f'No access page: {path}'
             self.assertEqual(
                 status.HTTP_200_OK, response.status_code, error_name)
-
 
 
 class HomeViewTest(TestCase):
@@ -79,6 +78,3 @@ class HomeViewTest(TestCase):
         response = self.client.get('')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(3, len(response.context['cards']))
-
-
-
