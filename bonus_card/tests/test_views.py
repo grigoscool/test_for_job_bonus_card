@@ -33,18 +33,28 @@ class StaticUrlTest(TestCase):
             error_name: str = f'url {url} expected {template}'
             self.assertTemplateUsed(response, template, error_name)
 
+    def test_redirects_urls(self):
+        path_url: dict = {
+            f'/activate/{self.card_1.pk}/': f'/card-detail/{self.card_1.pk}/',
+            f'/deactivate/{self.card_1.pk}/': f'/card-detail/{self.card_1.pk}/',
+            f'/delete/{self.card_1.pk}/': '/',
+
+        }
+        for path, url in path_url.items():
+            response = self.client.get(path)
+            self.assertRedirects(response, url)
+
+
     def test_dinamic_url(self):
         path_row: tuple = (
             f'/card-detail/{self.card_1.pk}/',
-            f'/activate/{self.card_1.pk}/',
-            f'/deactivate/{self.card_1.pk}/',
-            f'/delete/{self.card_1.pk}/',
         )
         for path in path_row:
             response = self.client.get(path)
             error_name: str = f'No access page: {path}'
             self.assertEqual(
                 status.HTTP_200_OK, response.status_code, error_name)
+
 
 
 class HomeViewTest(TestCase):
