@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-{% for c in card %}
+		<div class="card-group">
+			{% for c in cards %}
 	    <div class="card" style="width: 18rem;">
 			  <div class="card-body">
 			    <h5 class="card-title">num: {{ c.card_num }}</h5>
@@ -13,5 +14,6 @@
 			    <a href="#" class="card-link">Another link</a>
 			  </div>
 			</div>
-{% endfor %}
+			{% endfor %}
+		</div>
 {% endblock content %}

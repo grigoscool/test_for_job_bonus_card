@@ -40,9 +40,9 @@ def detail(request, pk):
 def search(request):
     """ Show results of searching. """
     query = request.GET.get('search')
-    card = BonusCard.objects.search(query)
+    cards = BonusCard.objects.search(query)
     context = {
-        'card': card,
+        'cards': cards,
     }
     return render(request, 'bonus_card/search.html', context)
 
