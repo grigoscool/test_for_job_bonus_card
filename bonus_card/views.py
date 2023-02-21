@@ -1,11 +1,13 @@
 import random
 from datetime import timedelta
 
+from django.views import generic
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 from .models import BonusCard, Buy
+from .forms import BonusCardForm
 
 
 def home(request):
@@ -85,3 +87,11 @@ def generate(request):
                       timedelta(days=int((request.GET.get('duration'))) * 30)),
         )
     return redirect('bonus_card:home')
+
+
+class CreateCard(generic.CreateView):
+    """
+    This view show a form to create bonus card.
+    """
+    form_class = BonusCardForm
+    template_name = 'bonus_card/add_card.html'

@@ -1,0 +1,10 @@
+{% extends 'bonus_card/base.html' %}
+{% load static %}
+
+{% block content %}
+<form action="{% url 'bonus_card:card_create' %}" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">add card</button>
+</form>
+{% endblock content %}

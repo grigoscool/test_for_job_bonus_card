@@ -14,5 +14,5 @@ urlpatterns = [
     path('delete/<int:pk>/', views.delete, name='delete'),
     path('generate_card/', views.generate_card, name='generate_card'),
     path('generate/', views.generate, name='generate'),
-
+    path('card-creation/', views.CreateCard.as_view(), name='card_create'),
 ]

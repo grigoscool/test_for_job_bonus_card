@@ -17,7 +17,10 @@
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link active" aria-current="page" href="{% url 'bonus_card:generate_card' %}">generate card</a>
-	        </li>
+				  </li>
+	        <li class="nav-item">
+				    <a class="nav-link active" aria-current="page" href="{% url 'bonus_card:card_create' %}">create new card</a>
+				  </li>
 				</ul>
 		    <form class="d-flex" role="search" method="get" action="{% url 'bonus_card:search' %}">
 		      <input name="search" type="text" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
