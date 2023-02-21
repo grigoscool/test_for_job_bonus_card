@@ -4,7 +4,24 @@
 {% block content %}
 <form action="{% url 'bonus_card:card_create' %}" method="post">
 	{% csrf_token %}
-	{{ form.as_p }}
-	<button type="submit">add card</button>
+	  <div class="row w-75" >
+        <label for="serial_num" class="col-sm-2 col-form-label-lg">Серийник (4х значный)</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control form-control-lg" id="serial_num" placeholder="Enter serial number">
+        </div>
+    </div>
+		  <div class="row w-75">
+        <label for="card_num" class="col-sm-2 col-form-label-lg">Номер карты</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control form-control-lg" id="card_num" placeholder="Enter card number">
+        </div>
+    </div>
+	  <div class="row w-75">
+        <label for="date_end" class="col-sm-2 col-form-label-lg">Дата окончания (от месяца до года)</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control form-control-lg" id="date_end" placeholder="Enter serial number">
+        </div>
+    </div>
+	<button type="submit" class="btn btn-primary text-center d-flex flex-wrap align-content-center">add card</button>
 </form>
 {% endblock content %}
