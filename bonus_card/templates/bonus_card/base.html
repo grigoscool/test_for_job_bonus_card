@@ -11,17 +11,18 @@
 		<nav class="navbar bg-light">
 		  <div class="container-fluid">
 		    <a class="navbar-brand">Navbar</a>
-			  <ul class="navbar-nav">
-	        <li class="nav-item">
+
+	        <span class="nav-item">
 	          <a class="nav-link active" aria-current="page" href="{% url 'bonus_card:home' %}">Home</a>
-	        </li>
-	        <li class="nav-item">
+	        </span>
+
+	        <span class="nav-item">
 	          <a class="nav-link active" aria-current="page" href="{% url 'bonus_card:generate_card' %}">generate card</a>
-				  </li>
-	        <li class="nav-item">
+				  </span>
+	        <span class="nav-item">
 				    <a class="nav-link active" aria-current="page" href="{% url 'bonus_card:card_create' %}">create new card</a>
-				  </li>
-				</ul>
+				  </span>
+
 		    <form class="d-flex" role="search" method="get" action="{% url 'bonus_card:search' %}">
 		      <input name="search" type="text" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 		      <button class="btn btn-outline-success" type="submit">Search</button>

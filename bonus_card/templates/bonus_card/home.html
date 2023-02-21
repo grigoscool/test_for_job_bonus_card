@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+		<div class="card-group">
 		{% for card in cards %}
 	    <div class="card" style="width: 18rem;">
 			  <div class="card-body">
@@ -15,6 +16,7 @@
 			  </div>
 			</div>
 		{% endfor %}
+		</div>
 <div class="paginator">
 	{% if cards.has_previous %}
 		<a class="pagin-link" href="?page={{ cards.previous_page_number }}">&laquo;</a>

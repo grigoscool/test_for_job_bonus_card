@@ -3,20 +3,31 @@
 
 {% block content %}
 <form action="{% url 'bonus_card:generate' %}" method="get">
-  <label for="1">entry count of cards:</label>
-    <input id="1" type="text" name="count_cards">
-  <br>
-  <lable for="2">entry serial number:</lable>
-    <input id="2" name="serial" type="text">
-  <br>
-  <p>select duration:</p>
-    <label for="3">1 year</label>
-      <input id="3" name="duration" value="12" type="radio">
-    <label for="4">6 months</label>
-      <input id="4" name="duration" value="6" type="radio">
-    <label for="5">1 month</label>
-      <input id="5" name="duration" value="1" type="radio">
-  <br>
-  <button type="submit">generate</button>
+	  <div class="row w-75">
+        <label for="1" class="col-sm-2 col-form-label-lg">Количество карт для выпуска:</label>
+        <div class="col-sm-10">
+            <input type="text" name="count_cards" class="form-control form-control-lg" id="1" placeholder="entry count of cards">
+        </div>
+    </div>
+  	<div class="row w-75">
+        <label for="2" class="col-sm-2 col-form-label-lg">Серийный номер карт:</label>
+        <div class="col-sm-10">
+            <input type="text" name="serial" class="form-control form-control-lg" id="2" placeholder="entry serial number">
+        </div>
+    </div>
+    <p class="label_radio col-sm-3 col-form-label-lg">select duration:</p>
+    <div class="radio_group btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-secondary active">
+        <input type="radio" name="duration" id="option1" autocomplete="off" value="12"> 1 year
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="duration" id="option2" autocomplete="off" value="6" > 6 months
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="duration" id="option3" autocomplete="off" value="1" > 1 month
+      </label>
+    </div>
+    <button type="submit" class=" add_btn btn btn-primary text-center d-flex flex-wrap align-content-center">generate</button>
+
 </form>
 {% endblock content %}

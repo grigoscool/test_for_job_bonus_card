@@ -78,6 +78,7 @@ def generate_card(request):
 def generate(request):
     """ This view will create custom bonus card. """
     my_list = list(range(1_000, 10_000))
+    print((request.GET.get('count_cards')))
     for _ in range(int(request.GET.get('count_cards'))):
         BonusCard.objects.create(
             serial_num=int(request.GET.get('serial')),
