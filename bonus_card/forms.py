@@ -20,7 +20,6 @@ class BonusCardForm(ModelForm):
         return card_num
 
     def clean(self):
-        cleaned_data = super().clean()
         serial_num = self.cleaned_data.get('serial_num')
         card_num = self.cleaned_data.get('card_num')
         if card_num == serial_num:

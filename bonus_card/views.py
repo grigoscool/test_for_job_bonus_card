@@ -96,4 +96,3 @@ class CreateCard(generic.CreateView):
     """
     form_class = BonusCardForm
     template_name = 'bonus_card/add_card.html'
-
